@@ -1,0 +1,11 @@
+C programa bat terminalean exekutatzeko hurrengoko pausoak jarraitu.
+
+1.- Lehenengo karpetara sartu cd erabiliz
+2.- gcc programaIzena.c -o programaIzena.exe egin
+3.- ./programaIzena.exe egin
+
+
+Programa baten id-a lortutakoan prozesua hiltzeko hurrengokoa egin.
+kill -SIGKILL XXX
+
+fork() https://es.stackoverflow.com/questions/179414/como-funciona-la-funci%C3%B3n-fork

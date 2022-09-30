@@ -1,0 +1,9 @@
+total 64
+-rwxrwxr-x 1 iker iker 16048 sep 28 08:27 ejemploSystem
+-rw-rw-r-- 1 iker iker   418 sep 28 08:27 ejemploSystem.c
+-rw-rw-r-- 1 iker iker     0 sep 28 08:27 ficsalida
+-rw-rw-r-- 1 iker iker    62 sep 21 09:57 fiscasalida
+-rw-rw-r-- 1 iker iker   119 sep 21 08:50 helloWorld.c
+-rwxrwxr-x 1 iker iker 15960 sep 21 08:51 helloWorld.exe
+-rw-rw-r-- 1 iker iker   446 sep 21 09:51 scanner.c
+-rwxrwxr-x 1 iker iker 16056 sep 21 09:52 scanner.exe
