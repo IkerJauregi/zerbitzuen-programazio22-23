@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main(void)
+{
+    pid_t pidAita, pidSemea, pidSemea2;
+    int diruKantitea = 10000, diruaAtera = 0, diruaSartu, aukera = 5;
+    int fd1[2], fd2[2], fd3[2], fd4[2];
+    // Creamos los pipes
+    pipe(fd1);
+    pipe(fd2);
+    pipe(fd3);
+    pipe(fd4);
+
+    // Creamos el proceso hijo1
+    pidSemea = fork();
+    if (pidSemea == -1)
+    {
+        printf("No se ha podido crear el proceso hijo");
+        exit(-1);
+    }
+    // Entra el proceso padre
+    else if (pidSemea != 0)
+    {
+        pidAita = getpid();
+        pidSemea2 = fork();
+        pidSemea = getpid();
+    }
+    while (aukera != 0 && getpid() == pidAita)
+    {
+        printf("\n1.-Dirua atera:\n");
+        printf("2.-Dirua sartu: \n");
+        printf("3.-Egungo egoera:\n");
+        printf("0. Irten\n");
+        printf("Zer engingo duzu? ");
+        scanf("%i", &aukera);
+
+        if (aukera == 1)
+        {
+            printf("Zenbat diru atera nahi duzu:");
+            scanf("%i", &diruaAtera);
+
+            if ((diruKantitea - diruaAtera) < 0)
+            {
+                //Datuak jasotzeko
+                close(fd4[1]);
+                read(fd3[0], &diruaAtera, sizeof(diruaAtera))
+                diruKantitea = diruKantitea - diruaAtera;
+                //Datuak bialtzeko
+                close(fd1[0]);
+                write(fd1[1], diruKantitea, diruKantitea);
+            }
+            else
+            {
+                printf("Ez daukazu hainbeste diru ateratzeko kapazitaterik");
+            }
+        }
+        if (aukera == 2)
+        {
+            printf("Zenbat diru sartu nahi duzu?");
+            scanf("%i", &diruaSartu);
+
+            diruKantitea = diruKantitea + diruaSartu;
+            close(fd2[0]);
+            write(fd2[1], diruKantitea, diruKantitea);
+        }
+        if (aukera == 3)
+        {
+        }
+    }
+    // Matar a las señales el SIGKILL FALLA
+    kill(pidSemea, SIGKILL);
+    kill(pidSemea2, SIGKILL);
+    exit(0);
+}
